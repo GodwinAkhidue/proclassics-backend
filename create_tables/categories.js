@@ -4,7 +4,6 @@ const create_categories_table = async () => {
   const query = `CREATE TABLE IF NOT EXISTS categories (
         slug VARCHAR UNIQUE,
         name VARCHAR UNIQUE,
-        description TEXT,
         image JSONB,
         created_at TIMESTAMPTZ DEFAULT NOW()
     );`;

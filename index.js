@@ -3,8 +3,13 @@ import create_products_table from "./create_tables/products.js";
 import create_categories_table from "./create_tables/categories.js";
 import create_banners_table from "./create_tables/banners.js";
 import create_blogs_table from "./create_tables/blogs.js";
+import admin from "./admin/route.js";
+import api from "./api/route.js";
 
 const root = express();
+
+root.use("/admin", admin)
+root.use("/api", api)
 
 root.get("/", async (_, res) => {
   const products = await create_products_table();
