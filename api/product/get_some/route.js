@@ -8,8 +8,9 @@ get_some.get("/:page", async (req, res) => {
   const limit = 10;
   const offset = (page - 1) * limit;
 
-  const query = `SELECT slug, image, name, created_at
-     FROM categories
+  const query = 
+    `SELECT slug, images, name, category, price, created_at
+     FROM products
      ORDER BY created_at DESC
      OFFSET $1
      LIMIT $2;`;
@@ -23,10 +24,10 @@ get_some.get("/:page", async (req, res) => {
   }
 
   if (result.command !== "SELECT" || result.rows < 1) {
-    return res.status(400).json({ message: "Could not find any category" });
+    return res.status(400).json({ message: "Could not find any product" });
   }
 
-  return res.status(200).json({ categories: result.rows });
+  return res.status(200).json({ products: result.rows });
 });
 
 export default get_some;

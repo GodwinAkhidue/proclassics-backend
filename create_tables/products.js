@@ -8,6 +8,7 @@ const create_products_table = async () => {
         category VARCHAR,
         images JSONB,
         other_info JSONB,
+        price DECIMAL,
         created_at TIMESTAMPTZ DEFAULT NOW()
     );`;
 
