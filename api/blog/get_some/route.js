@@ -8,8 +8,9 @@ get_some.get("/:page", async (req, res) => {
   const limit = 10;
   const offset = (page - 1) * limit;
 
-  const query = `SELECT slug, image, name, created_at
-     FROM categories
+  const query = 
+    `SELECT slug, title, thumbnail, published, created_at
+     FROM blogs
      ORDER BY created_at DESC
      OFFSET $1
      LIMIT $2;`;
@@ -22,7 +23,7 @@ get_some.get("/:page", async (req, res) => {
     return res.status(400).json({ message: "Database Error" });
   }
 
-  return res.status(200).json({ categories: result.rows });
+  return res.status(200).json({ blogs: result.rows });
 });
 
 export default get_some;

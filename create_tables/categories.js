@@ -11,7 +11,6 @@ const create_categories_table = async () => {
   const { result, error } = await psql_query(query);
 
   if (error) {
-    console.log(error);
     return false;
   }
 

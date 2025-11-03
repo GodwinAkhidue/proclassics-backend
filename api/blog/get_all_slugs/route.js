@@ -4,7 +4,7 @@ import psql_query from "../../../utils/postgresql.js";
 const get_all_slugs = express();
 get_all_slugs.get("", async (req, res) => {
 
-  const query = `SELECT slug FROM products;`;
+  const query = `SELECT slug FROM blogs;`;
 
   const { result, error } = await psql_query(query);
 

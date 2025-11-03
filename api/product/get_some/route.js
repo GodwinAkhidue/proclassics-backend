@@ -23,10 +23,6 @@ get_some.get("/:page", async (req, res) => {
     return res.status(400).json({ message: "Database Error" });
   }
 
-  if (result.command !== "SELECT" || result.rows < 1) {
-    return res.status(400).json({ message: "Could not find any product" });
-  }
-
   return res.status(200).json({ products: result.rows });
 });
 

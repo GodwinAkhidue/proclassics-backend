@@ -6,14 +6,13 @@ const create_blogs_table = async () => {
         title VARCHAR UNIQUE,
         thumbnail JSONB,
         sections JSONB,
-        published BOOLEAN,
+        published BOOLEAN DEFAULT TRUE,
         created_at TIMESTAMPTZ DEFAULT NOW()
     );`;
 
   const { result, error } = await psql_query(query);
 
   if (error) {
-    console.log(error);
     return false;
   }
 
