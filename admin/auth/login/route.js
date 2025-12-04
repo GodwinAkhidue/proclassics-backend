@@ -18,9 +18,9 @@ login.post("", (req, res) => {
     res.cookie("adminToken", adminToken, {
       httpOnly: true,
       secure: true,
-    //   sameSite: "None",
-    //   domain: ".proclassics.co",
-    //   path: "/",
+      sameSite: "None",
+      domain: ".proclassics.co",
+      path: "/",
       maxAge: 1000 * 60 * 60 * 24, //24hrs in milliseconds
     });
 
