@@ -24,9 +24,9 @@ login.post("", (req, res) => {
       maxAge: 1000 * 60 * 60 * 24, //24hrs in milliseconds
     });
 
-    return res.status(200).json({})
+    return res.status(200).json({});
   } else {
-    return res.status(400).json({message: "Invalid name or password"})
+    return res.status(400).json({ message: "Invalid name or password" });
   }
 });
 
