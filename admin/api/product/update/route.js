@@ -3,7 +3,8 @@ import psql_query from "../../../../utils/postgresql.js";
 
 const update = express();
 update.post("", async (req, res) => {
-  const { slug, name, description, category, images, otherInfo, price } = req.body;
+  const { slug, name, description, category, images, otherInfo, price } =
+    req.body;
 
   const query = `UPDATE products 
    SET slug = $1, 
@@ -23,7 +24,7 @@ update.post("", async (req, res) => {
     JSON.stringify(images),
     JSON.stringify(otherInfo),
     price,
-    slug
+    slug,
   ];
 
   const { result, error } = await psql_query(query, values);
