@@ -10,7 +10,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = ["https://admin.proclassics.co"];
+const allowedOrigins = [
+  "https://admin.proclassics.co",
+  "https://proclassics.co",
+];
 
 app.use(
   cors({
