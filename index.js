@@ -1,16 +1,37 @@
 import express from "express";
-import create_products_table from "./create_tables/products.js";
-import create_categories_table from "./create_tables/categories.js";
-import create_banners_table from "./create_tables/banners.js";
-import create_blogs_table from "./create_tables/blogs.js";
-import admin from "./admin/route.js";
-import api from "./api/route.js";
-import { create_banner_row_homepage_hero } from "./create_tables/homepage_hero_banner.js";
-import { create_banner_row_homepage_1 } from "./create_tables/homepage_banner_1.js";
+import dotenv from "dotenv";
+import cors from "cors";
+import root from "./app.js";
+import cookieParser from "cookie-parser";
 
-const root = express();
+dotenv.config();
 
-root.use("/admin", admin);
-root.use("/api", api);
+const app = express();
+app.use(express.json());
+app.use(cookieParser());
 
-export default root;
+const allowedOrigins = [
+  "https://admin.proclassics.co",
+  "https://proclassics.co",
+  "http://localhost:3000"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
+app.use("", root);
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Running on port ${port}`));
