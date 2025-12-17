@@ -17,7 +17,7 @@ const psql_query = async (query, values) => {
   try {
     const db = await pool.connect();
     const result = await db.query(query, values);
-    await db.release();
+    db.release();
     return { result };
   } catch (error) {
     return { error };
