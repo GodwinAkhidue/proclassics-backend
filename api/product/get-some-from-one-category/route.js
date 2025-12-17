@@ -3,10 +3,7 @@ import psql_query from "../../../utils/postgresql.js";
 
 const get_some_from_one_category = express();
 get_some_from_one_category.post("", async (req, res) => {
-  const { page, slug } = req.body;
-
-  const limit = 10;
-  const offset = (page - 1) * limit;
+  const { slug } = req.body;
 
   const get_category_name = await psql_query(
     `SELECT name 
@@ -24,12 +21,10 @@ get_some_from_one_category.post("", async (req, res) => {
 
   const query = `SELECT slug, images, name, category, price, created_at
      FROM products
-     WHERE category = $3
-     ORDER BY created_at DESC
-     OFFSET $1
-     LIMIT $2;`;
+     WHERE category = $1
+     ORDER BY created_at DESC;`;
 
-  const values = [offset, limit, category];
+  const values = [category];
 
   const { result, error } = await psql_query(query, values);
 
