@@ -9,12 +9,15 @@ const pool = new Pool({
   port: process.env.POSTGRESQL_PORT || 5432,
   database: process.env.POSTGRESQL_DATABASE || "postgres",
   password: process.env.POSTGRESQL_PASSWORD,
+  idleTimeoutMillis: 1000,
+  connectionTimeoutMillis: 500,
 });
 
 const psql_query = async (query, values) => {
   try {
     const db = await pool.connect();
     const result = await db.query(query, values);
+    await db.release();
     return { result };
   } catch (error) {
     return { error };
