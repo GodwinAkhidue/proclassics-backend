@@ -10,7 +10,7 @@ get_some_from_category.post("", async (req, res) => {
      WHERE category = $1
      AND slug != $2
      ORDER BY created_at DESC
-     LIMIT = 4;`;
+     LIMIT 4;`;
 
   const values = [category, slug];
 
