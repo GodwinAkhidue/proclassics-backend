@@ -13,7 +13,6 @@ app.use(cookieParser());
 const allowedOrigins = [
   "https://admin.proclassics.co",
   "https://proclassics.co",
-  "https://proclassics2-0.vercel.app"
 ];
 
 app.use(
