@@ -13,6 +13,7 @@ app.use(cookieParser());
 const allowedOrigins = [
   "https://admin.proclassics.co",
   "https://proclassics.co",
+  "https://www.proclassics.co",
 ];
 
 app.use(
